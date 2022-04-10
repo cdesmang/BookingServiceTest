@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Testing of Users.java
- * Note: Code fails to compile, as it gives a NullPointerException.
  * @author Max Strickland
  */
 public class UsersTest
@@ -100,5 +99,24 @@ public class UsersTest
         usersObject.deleteUser(registerUserRobertFlame);
 
         assertNull(usersObject.searchUser("rflame532", "snowH8ter234*"));
+    }
+
+    @Test
+    public void testIfRegisteredC1()    //Case 1: The user exists.
+    {
+        Users usersObject = new Users();
+        Date dobRobertFrost = new Date(7, 14, 1989);
+        RegisteredUser registerUserRobertFrost = new RegisteredUser("Robert", "Frost", "rfrost325", "snowL0ver432*", "rfrost@yahoo.com", "1478 Pennelton Road, Dallas, Texas 75043", dobRobertFrost);
+
+        assertEquals(true, usersObject.checkIfRegisterd(registerUserRobertFrost));
+    }
+
+    @Test
+    public void testIfRegisteredC2()    //Case 2: The user is a guest.
+    {
+        Users usersObject = new Users();
+        GuestUser guestUserObject = new GuestUser();
+
+        assertEquals(false, usersObject.checkIfRegisterd(guestUserObject));
     }
 }

@@ -92,6 +92,13 @@ public class UsersTest
     @Test
     public void testDeleteUser()
     {
-        
+        Users usersObject = new Users();
+        Date dobRobertFlame = new Date(7, 17, 1968);
+        RegisteredUser registerUserRobertFlame = new RegisteredUser("Robert", "Flame", "rflame532", "snowH8ter234*", "rflame@aol.com", "1313 Wicked Lane, Hell, Michigan 48169", dobRobertFlame);
+        usersObject.addUser(registerUserRobertFlame);
+
+        usersObject.deleteUser(registerUserRobertFlame);
+
+        assertNull(usersObject.searchUser("rflame532", "snowH8ter234*"));
     }
 }

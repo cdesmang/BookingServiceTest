@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Testing of Users.java
+ * Note: Code fails to compile, as it gives a NullPointerException.
  * @author Max Strickland
  */
 public class UsersTest

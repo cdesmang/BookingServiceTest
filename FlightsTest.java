@@ -33,15 +33,139 @@ public class FlightsTest {
     }
 
     @Test 
-    public void testSearchFlightC2() // Case 2: Either aspect of either location or either date is not found
+    public void testSearchFlightC2() // Case 2: departure location is not found
     {
         Flights flights = Flights.getInstance();
         Date dDate = new Date(5, 11, 2022);
         Date aDate = new Date (5,11,2022);
-        ArrayList<Flight> actual = flights.searchFlight("charlotte", "NC", "Boston", "MA",dDate , aDate);
+        ArrayList<Flight> actual = flights.searchFlight("greenville", "NC", "Boston", "MA",dDate , aDate);
         assertNull(actual);
     }
 
+    @Test
+    public void testSearchFlightC3() // Case 3: arrival location is not found
+    {
+        Flights flights = Flights.getInstance();
+        Date dDate = new Date(5, 11, 2022);
+        Date aDate = new Date (5,11,2022);
+        ArrayList<Flight> actual = flights.searchFlight("charlotte", "NC", "chicago", "IL",dDate , aDate);
+        assertNull(actual);
+    }
+
+    @Test 
+    public void testSearchFlightC4()// Case 4: departure date is not found
+    {
+        Flights flights = Flights.getInstance();
+        Date dDate = new Date(5,12, 2022);
+        Date aDate = new Date (5,11,2022);
+        ArrayList<Flight> actual = flights.searchFlight("greenville", "NC", "Boston", "MA",dDate , aDate);
+        assertNull(actual);
+    }
+
+    @Test 
+    public void testSearchFlightC5()// Case 5: arrival date is unfound
+    {
+        Flights flights = Flights.getInstance();
+        Date dDate = new Date(5,11, 2022);
+        Date aDate = new Date (5,12,2022);
+        ArrayList<Flight> actual = flights.searchFlight("greenville", "NC", "Boston", "MA",dDate , aDate);
+        assertNull(actual);
+    }
+
+    /*@Test 
+    public void testSearchOneFlightC1() // Case 1: flight with matching airline and number is found
+    {
+        Flight[] actual = new Flight[1];
+        Flight[] temp = new Flight[2];
+
+        Flights flights = Flights.getInstance();
+        
+    }*/
+
+    @Test
+    public void testGetFlights()
+    {
+        Flights flights = Flights.getInstance();
+        ArrayList<Flight> expected = DataLoader.loadFlights();
+        ArrayList<Flight> actual = flights.getFlights();
+        assertEquals(expected, actual);
+    }
+
+    @Test 
+    public void testCheckConnectionC1()// Case 1: there is no connection found
+    {
+        Flights flights = Flights.getInstance();
+        Date dDate = new Date(5,11, 2022);
+        Date aDate = new Date (5,11,2022);
+        ArrayList<Flight> x = flights.searchFlight("charlotte", "NC", "boston", "MA", dDate, aDate);
+        Date dDate2 = new Date(5,15, 2022);
+        Date aDate2 = new Date (5,16,2022);
+        ArrayList<Flight> y = flights.searchFlight("chicago","IL","houston","TX",dDate2,aDate2);
+        ArrayList<Flight> actual = flights.checkConnection(x, y);
+        assertNull(actual);
+    }
+
+    @Test
+    public void testCheckConnectionC2() // Case 2: There is a connection found
+    {
+        Flights flights = Flights.getInstance();
+        Date Date1 = new Date(11,31, 2022);
+        Date Date2 = new Date(3, 24, 2022);
+        ArrayList<Flight> x = flights.searchFlight("charlotte","NC", "columbia","SC", Date2 ,Date2);
+        ArrayList<Flight> y = flights.searchFlight("columbia", "SC", "charlotte", "NC", Date1, Date1);
+        ArrayList<Flight> actual = flights.checkConnection(x, y);
+        assertNotNull(actual);
+    }
+
+    @Test 
+    public void testCheckALC1()// Case 1: The arrival location matches the given flight
+    {
+        boolean actual = Flights.getInstance().checkAL("columbia", "SC", 1);
+        assertEquals(true, actual);
+    }
+
+    @Test 
+    public void testCheckALC2() //Case 2: The arrival location does not match the given flight
+    {
+        boolean actual = Flights.getInstance().checkAL("houston","TX", 1);
+        assertEquals(false, actual);
+    }
+
+    @Test 
+    public void testCheckDLC1()// Case 1: The departure location matches the given flight
+    {
+        boolean actual = Flights.getInstance().checkDL("charlotte", "NC", 1);
+        assertEquals(true, actual);
+    }
+
+    @Test 
+    public void testCheckDLC2() //Case 2: The departure location does not match the given flight
+    {
+        boolean actual = Flights.getInstance().checkDL("houston","TX", 1);
+        assertEquals(false, actual);
+    }
+
+    @Test
+    public void testCheckDDC1() // Case 1: The given date matches the departure date of the flight
+    {
+        Date date = new Date(3, 24, 2022);
+        boolean actual = Flights.getInstance().checkDD(date, 1);
+        assertEquals(true, actual);
+    }
+
+    @Test
+    public void testCheckDDC2() // Case 2: The given date not match the departure date of the flight
+    {
+        Date date = new Date(3, 25, 2022);
+        boolean actual = Flights.getInstance().checkDD(date, 1);
+        assertEquals(false, actual);
+    }
+
+    @Test 
+    public void testAddFlight()
+    {
+        Flights.getInstance().addFlight(GenUUID.class;, flightNum, airline, destinationCity, destinationState, departureCity, departureState, departureDate, arrivalDate, flightDuration, departureTime, arrivalTime, seats);
+    }
 
 
 

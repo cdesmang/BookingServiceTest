@@ -67,6 +67,13 @@ public class Flights {
         }
         return temp;
     }
+    /**
+     * Returns a singluar flight
+     * @param airline - airline of the flight being searched for
+     * @param flightNum- flight number of the flight being searched for
+     * @param flights- an Array of flights to search through
+     * @return the particular flight that is desired
+     */
     public Flight[] searchOneFlight(String airline, int flightNum, Flight[] flights){
         Flight[] temp = new Flight[1];
         for (int i = 0; i< flights.length; i++){
@@ -86,7 +93,7 @@ public class Flights {
      * 
      * I added a connection index to the flight object ( but this may need to be an arraylist because what if there are multiple possible connections)
      */
-    private ArrayList<Flight>checkConnection(ArrayList<Flight> x, ArrayList<Flight> y){
+    public ArrayList<Flight>checkConnection(ArrayList<Flight> x, ArrayList<Flight> y){
         ArrayList<Flight> temp = new ArrayList<Flight>();
         for (int i = 0; i < x.size(); i++){
             for (int j = 0; j< y.size(); j++){
@@ -108,7 +115,7 @@ public class Flights {
      * @param i- index in arraylist from dataloader
      * @return true if the flight exists
      */
-    private boolean checkDL(String city, String state,int i){
+    public boolean checkDL(String city, String state,int i){
         try{
            return allFlights.get(i).getDepartCity().equalsIgnoreCase(city) && allFlights.get(i).getDepartState().equalsIgnoreCase(state);
            
@@ -125,7 +132,7 @@ public class Flights {
      * @param i- index in arraylist from dataloader
      * @return true if the flight exists
      */
-    private boolean checkAL(String city, String state,int i){
+    public boolean checkAL(String city, String state,int i){
         return allFlights.get(i).getDestinationCity().equalsIgnoreCase(city) && allFlights.get(i).getDestinationState().equalsIgnoreCase(state);
     }
 
@@ -135,7 +142,7 @@ public class Flights {
      * @param i- index in arraylist from dataloader
      * @return - true if the flight exists
      */
-    private boolean checkDD(Date date, int i){
+    public boolean checkDD(Date date, int i){
         return allFlights.get(i).getDepartDate().dateMatch(date);
     }
 
@@ -145,7 +152,7 @@ public class Flights {
      * @param i- index in arraylist from dataloader
      * @return - true if the flight exists
      */
-    private boolean checkAD(Date date, int i){
+    public boolean checkAD(Date date, int i){
         return allFlights.get(i).getArrivalDate().dateMatch(date);
     }
     

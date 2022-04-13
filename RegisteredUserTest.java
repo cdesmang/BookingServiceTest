@@ -36,11 +36,11 @@ public class RegisteredUserTest
     }
 
     @Test
-    public void testRemoveFriendC1() { //Case 1: list of friends empty
+    public void testRemoveFriendC1() { //Case 1: the user has no friends
     
         Users usersObject = new Users();
         RegisteredUser regUserObj;
-        regUserObj = usersObject.searchUser("kathyb", "sp1ceg1rlL0ver"); // real user
+        regUserObj = usersObject.searchUser("kathyb", "sp1ceg1rlL0ver"); // real user that has no friends in the json file
         //actually check
         ArrayList<Friend> friends = regUserObj.getFriends();
         assertTrue(friends.isEmpty());
@@ -52,9 +52,11 @@ public class RegisteredUserTest
     {
         Users usersObject = new Users();
         RegisteredUser regUserObj;
-        regUserObj = usersObject.searchUser("cindywright", "catL@dy<3"); // real user
+        regUserObj = usersObject.searchUser("jhud1338", "cut1eP1e!"); // real user that has friends in the json file
         //actually check
-        Friend friend = Friend("firstName", "lastName", "username", "email", Date(9, 9, 1999), "address"); // fake friend
+        ArrayList<Booking> friend_bookings = new ArrayList<Booking>();
+        friend_bookings.add(new Booking("8c724731-ab3e-4848-a02e-5d2a33e52747", "1A"));
+        Friend friend = Friend("firstName", "lastName", friend_bookings); // fake friend
         ArrayList<Friend> friends = regUserObj.getFriends();
         assertFalse(friends.contains(friend));
         return;
@@ -62,55 +64,20 @@ public class RegisteredUserTest
 
 
     @Test
-    public void testSearchUserC4()  //Case 4: correct username, incorrect password
+    public void testRemoveFriendC3()  //Case 3: person is a friend
     {
         Users usersObject = new Users();
-        RegisteredUser registeredUserObject;
-        registeredUserObject = usersObject.searchUser("rfrost325", "snowH8ter432*");
-        assertNull(registeredUserObject);
-        return;
-    }
+        RegisteredUser regUserObj;
+        regUserObj = usersObject.searchUser("jhud1338", "cut1eP1e!"); // real user that has friends in the json file
+        //actually check
 
-    @Test
-    public void testAddUser()
-    {
-        Users usersObject = new Users();
-        Date dobRobertFlame = new Date(7, 17, 1968);
-        RegisteredUser registerUserRobertFlame = new RegisteredUser("Robert", "Flame", "rflame532", "snowH8ter234*", "rflame@aol.com", "1313 Wicked Lane, Hell, Michigan 48169", dobRobertFlame);
-        usersObject.addUser(registerUserRobertFlame);
-
-        assertEquals(registerUserRobertFlame, usersObject.searchUser("rflame532", "snowH8ter234*"));    //searchUser is used because the new user would be at an unknown index
-    }
-
-    @Test
-    public void testDeleteUser()
-    {
-        Users usersObject = new Users();
-        Date dobRobertFlame = new Date(7, 17, 1968);
-        RegisteredUser registerUserRobertFlame = new RegisteredUser("Robert", "Flame", "rflame532", "snowH8ter234*", "rflame@aol.com", "1313 Wicked Lane, Hell, Michigan 48169", dobRobertFlame);
-        usersObject.addUser(registerUserRobertFlame);
-
-        usersObject.deleteUser(registerUserRobertFlame);
-
-        assertNull(usersObject.searchUser("rflame532", "snowH8ter234*"));
-    }
-
-    @Test
-    public void testIfRegisteredC1()    //Case 1: The user exists.
-    {
-        Users usersObject = new Users();
-        Date dobRobertFrost = new Date(7, 14, 1989);
-        RegisteredUser registerUserRobertFrost = new RegisteredUser("Robert", "Frost", "rfrost325", "snowL0ver432*", "rfrost@yahoo.com", "1478 Pennelton Road, Dallas, Texas 75043", dobRobertFrost);
-
-        assertEquals(true, usersObject.checkIfRegisterd(registerUserRobertFrost));
-    }
-
-    @Test
-    public void testIfRegisteredC2()    //Case 2: The user is a guest.
-    {
-        Users usersObject = new Users();
-        GuestUser guestUserObject = new GuestUser();
-
-        assertEquals(false, usersObject.checkIfRegisterd(guestUserObject));
+        ArrayList<Booking> friend_bookings = new ArrayList<Booking>();
+        Booking a = new Booking("8c724731-ab3e-4848-a02e-5d2a33e52926", "4G");
+        Booking b = new Booking("89953bc8-5655-41a9-a62f-b360ad1aa695", "3G");
+        friend_bookings.add(a);
+        friend_bookings.add(b);
+        Friend friend = Friend("Alexis", "Jonson", friend_bookings); // real friend
+        ArrayList<Friend> friends = regUserObj.getFriends();
+        assertTrue(friends.contains(friend));
     }
 }

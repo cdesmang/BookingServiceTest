@@ -55,8 +55,8 @@ public class RegisteredUserTest
         regUserObj = usersObject.searchUser("jhud1338", "cut1eP1e!"); // real user that has friends in the json file
         //actually check
         ArrayList<Booking> friend_bookings = new ArrayList<Booking>();
-        friend_bookings.add(new Booking("8c724731-ab3e-4848-a02e-5d2a33e52747", "1A"));
-        Friend friend = Friend("firstName", "lastName", friend_bookings); // fake friend
+        friend_bookings.add(new Booking(UUID.fromString("8c724731-ab3e-4848-a02e-5d2a33e52747"), "1A"));
+        Friend friend = new Friend("firstName", "lastName", friend_bookings); // fake friend
         ArrayList<Friend> friends = regUserObj.getFriends();
         assertFalse(friends.contains(friend));
         return;
@@ -76,7 +76,7 @@ public class RegisteredUserTest
         Booking b = new Booking("89953bc8-5655-41a9-a62f-b360ad1aa695", "3G");
         friend_bookings.add(a);
         friend_bookings.add(b);
-        Friend friend = Friend("Alexis", "Jonson", friend_bookings); // real friend
+        Friend friend = new Friend("Alexis", "Jonson", friend_bookings); // real friend
         ArrayList<Friend> friends = regUserObj.getFriends();
         assertTrue(friends.contains(friend));
     }

@@ -2,7 +2,7 @@ import java.util.UUID;
 
 class GenUUID {
 
-    public void run() {
+    public static void run() {
         UUID id = UUID.randomUUID();
         System.out.println(id);
     }

@@ -161,11 +161,23 @@ public class FlightsTest {
         assertEquals(false, actual);
     }
 
-    @Test 
+
+   /* @Test 
     public void testAddFlight()
     {
-        Flights.getInstance().addFlight(GenUUID.class;, flightNum, airline, destinationCity, destinationState, departureCity, departureState, departureDate, arrivalDate, flightDuration, departureTime, arrivalTime, seats);
-    }
+        Seat seat1 = new Seat(1,"A",true);
+        Seat seat2 = new Seat(1,"B",true);
+        Seat seat3 = new Seat(1,"C", false);
+        Seat seat4 = new Seat(1,"D",false);
+        ArrayList<Seat> seats = new ArrayList<Seat>();
+        seats.add(seat1);
+        seats.add(seat2);
+        seats.add(seat3);
+        seats.add(seat4);
+        Date date = new Date (2,1, 2023);
+        UUID ID = 
+        Flights.getInstance().addFlight(UUID, 1111, "Delta", "New Orleans","LA", "Atlanta", "GA",date , date,"3hrs", "5:00PM", "8:00PM", seats);
+    }*/
 
 
 

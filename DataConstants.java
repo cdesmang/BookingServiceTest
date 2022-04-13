@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public abstract class DataConstants {
-    protected static final String FLIGHT_FILE_NAME = "flights.json";
-    protected static final String USER_FILE_NAME = "users.json";
+    protected static final String FLIGHT_FILE_NAME = "C:/Users/tomec/OneDrive/Desktop/BookingServiceTest/flights.json";
+    protected static final String USER_FILE_NAME = "C:/Users/tomec/OneDrive/Desktop/BookingServiceTest/users.json";
 
     protected static final String FLIGHT_ID = "id";
     protected static final String FLIGHT_NUM = "flightNumber";

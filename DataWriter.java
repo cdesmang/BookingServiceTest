@@ -24,11 +24,8 @@ public class DataWriter extends DataConstants {
 
         // Writes to the JSON file
         try (FileWriter file = new FileWriter(FLIGHT_FILE_NAME)) {
-
-            file.append(jsonPlanes.toJSONString());
-            file.flush();
-            file.close();
-            
+            file.write(jsonPlanes.toJSONString());
+            file.flush();            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -46,9 +43,8 @@ public class DataWriter extends DataConstants {
 
         // Writes to the JSON file
         try (FileWriter file = new FileWriter(USER_FILE_NAME)) {
-            file.append(jsonAccounts.toJSONString());
+            file.write(jsonAccounts.toJSONString());
             file.flush();
-            file.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -62,7 +58,7 @@ public class DataWriter extends DataConstants {
 
         JSONObject flightDetails = new JSONObject();
 
-        flightDetails.put(FLIGHT_ID, flight.getFlightID());
+        flightDetails.put(FLIGHT_ID, flight.getFlightID().toString());
         flightDetails.put(FLIGHT_NUM, flight.getFlightNum());
         flightDetails.put(AIRLINE, flight.getAirline());
         flightDetails.put(FLIGHT_DURATION, flight.getFlightDuration());

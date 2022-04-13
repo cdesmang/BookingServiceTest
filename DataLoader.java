@@ -22,7 +22,7 @@ public class DataLoader extends DataConstants {
             FileReader reader = new FileReader(FLIGHT_FILE_NAME);
             JSONParser parser = new JSONParser();
             JSONArray flightsJSON = (JSONArray)parser.parse(reader);
-
+            
             for(int i = 0; i < flightsJSON.size(); i++) {
                 JSONObject flightJSON = (JSONObject)flightsJSON.get(i);
                 UUID id = UUID.fromString((String)flightJSON.get(FLIGHT_ID));

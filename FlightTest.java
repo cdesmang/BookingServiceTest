@@ -105,4 +105,24 @@ public class FlightTest
         "\n Connecting Flight Result Number(s):  "+
         "\n --------------------------------------------------------------------------------------------------------", flightList.get(1).toString());
     }
+
+    @Test
+    public void seatsToArrayTest()
+    {
+        Seat seatA1 = new Seat(1, "A", false);
+        Seat seatB1 = new Seat(1, "B", false);
+        Seat seatC1 = new Seat(1, "C", true);
+        Seat seatA2 = new Seat(2, "A", true);
+        Seat seatB2 = new Seat(2, "B", false);
+        Seat seatC2 = new Seat(2, "C", true);
+        Seat seatA3 = new Seat(3, "A", false);
+        Seat seatB3 = new Seat(3, "B", false);
+        Seat seatC3 = new Seat(3, "C", true);
+        Seat seatA4 = new Seat(4, "A", true);
+        Seat seatB4 = new Seat(4, "B", false);
+        Seat seatC4 = new Seat(4, "C", true);
+        
+        Seat[][] SeatArray = {{seatA1, seatA2, seatA3, seatA4},{seatB1, seatB2, seatB3, seatB4},{seatC1, seatC2, seatC3, seatC4}};
+        assertEquals(SeatArray, flightList.get(0).toSeatArray());
+    }
 }
